@@ -1,6 +1,7 @@
 const niv = require('node-input-validator');
 const express = require('express');
 const User = require('../models/user.model');
+const Snippet = require('../models/snippet.model');
 
 //#region custom rules
 niv.extend('uniqueUser', async({value, args}) => {
@@ -9,6 +10,13 @@ niv.extend('uniqueUser', async({value, args}) => {
         return false;
     return true;
 });
+
+niv.extend('existsSnippet', async({value, args}) => {
+    const exists = await Snippet.findById(value);
+    if(!exists)
+        return false;
+    return true;
+})
 //#endregion
 
 //#region validate function
@@ -21,7 +29,8 @@ niv.extend('uniqueUser', async({value, args}) => {
 const validate = async(data, rules) => {
     niv.addCustomMessages({ 
         'email.required': 'Email is mandatory',
-        'uniqueUser': 'There is already user exists with that email'
+        'uniqueUser': 'There is already user exists with that email',
+        'existsSnippet': 'There is no snippets exists with that id',
     }, 'en');
 
     const v = new niv.Validator(data, rules);

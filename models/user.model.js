@@ -18,4 +18,10 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
     return verifyHashed(candidatePassword, this.password);
 }
 
+userSchema.virtual('snippets', {
+  ref: 'Snippets',
+  localField: '_id',
+  foreignField: 'createdBy'
+});
+
 module.exports = mongoose.model('Users', userSchema);
