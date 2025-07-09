@@ -7,12 +7,13 @@ const express = require('express');
  * @param {express.NextFunction} next 
  */
 const errorHandler = (err, req, res, next) => {
+    const isDev = process.env.NODE_ENV === 'development';
     console.error(err.stack);
     
     res.status(500).json({
         success: false,
-        message: err.message || 'Internal server error',
-        ...(process.env.NODE_ENV == 'development' && err.stack)
+        message: isDev ? err.message : 'Something went wrong',
+        ...(isDev ? { stack: err.stack } : {})
     });
 }
 

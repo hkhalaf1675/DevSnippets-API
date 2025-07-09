@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express();
 const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const config = require('./config/config');
 const { default: mongoose } = require('mongoose');
 const { errorHandler } = require('./middlewares/global-error-handler.middleware');
@@ -10,24 +12,33 @@ app.use(cors({
     optionsSuccessStatus: 200
 }));
 
+app.use(helmet());
+
+app.use(morgan('dev'));
+
 /* mongodb connection */
-mongoose.connect(config.mongodbUri)
-    .then(() => console.log('Mongodb has been connected successfully'))
-    .catch((error) => console.error('Mongodb connection error', error));
+(async () => {
+    try {
+        await mongoose.connect(config.mongodbUri);
+        console.log('MongoDB connected successfully');
+    } catch (err) {
+        console.error('MongoDB connection error', err);
+        process.exit(1);
+    }
+})();
+
+/* routes */
 
 /* Welcome Api */ 
-app.get('/', (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: 'Dev Snippets Apis'
-    });
-});
+const welcomeRoute = require('./routes/index.route');
+app.use('/', welcomeRoute);
 
 /* handle APIs not found */
 app.use((req, res) => {
     res.status(404).json({
         success: false,
-        message: `Can not find ${req.originalUrl}`
+        message: 'API Not Found',
+        errors: [`Can not find ${req.originalUrl}`]
     });
 });
 
