@@ -80,19 +80,19 @@ npm install
 
 | Method | Endpoint              | Description                         | Auth Required |
 |--------|-----------------------|-------------------------------------|---------------|
-| POST   | `/api/users/register` | Register a new user                 | ❌ No         |
-| POST   | `/api/users/login`    | Login and receive JWT token         | ❌ No         |
-| GET    | `/api/users`          | Get all users (with filters, pagination) | ✅ Yes    |
+| POST   | `/auth/register` | Register a new user                 | ❌ No         |
+| POST   | `/auth/login`    | Login and receive JWT token         | ❌ No         |
+| GET    | `/users`          | Get all users (with filters, pagination) | ✅ Yes    |
 
 ### 📄 Snippet Routes
 
 | Method | Endpoint              | Description                          | Auth Required |
 |--------|-----------------------|--------------------------------------|---------------|
-| POST   | `/api/snippets`       | Create a new code snippet            | ✅ Yes        |
-| GET    | `/api/snippets`       | Get snippets (paginated, filtered)   | ✅ Yes        |
-| GET    | `/api/snippets/:id`   | Get a snippet by its ID              | ✅ Yes        |
-| PUT    | `/api/snippets/:id`   | Update a snippet by its ID           | ✅ Yes        |
-| DELETE | `/api/snippets/:id`   | Delete a snippet by its ID           | ✅ Yes        |
+| POST   | `/snippets`       | Create a new code snippet            | ✅ Yes        |
+| GET    | `/snippets`       | Get snippets (paginated, filtered)   | ✅ Yes        |
+| GET    | `/snippets/:id`   | Get a snippet by its ID              | ✅ Yes        |
+| PUT    | `/snippets/:id`   | Update a snippet by its ID           | ✅ Yes        |
+| DELETE | `/snippets/:id`   | Delete a snippet by its ID           | ✅ Yes        |
 
 > ✅ **Auth Required** means you must include a valid JWT token in the `Authorization` header as:  
 > `Authorization: Bearer <your_token_here>`
