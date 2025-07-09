@@ -1,0 +1,31 @@
+{
+  "name": "devsnippets-api",
+  "version": "1.0.0",
+  "description": "This is a simple RESTful API where users (developers) can save, retrieve, update, and delete short code snippets — like mini code blocks they often reuse.",
+  "main": "app.js",
+  "scripts": {
+    "start-dev": "nodemon app.js",
+    "start-prod": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkhalaf1675/DevSnippets-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hkhalaf1675/DevSnippets-API/issues"
+  },
+  "homepage": "https://github.com/hkhalaf1675/DevSnippets-API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
