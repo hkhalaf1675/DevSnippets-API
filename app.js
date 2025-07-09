@@ -7,6 +7,7 @@ const config = require('./config/config');
 const { default: mongoose } = require('mongoose');
 const { errorHandler } = require('./middlewares/global-error-handler.middleware');
 
+//#region app configurations
 app.use(cors({
     origin: config.allowOrigins?.split(','),
     optionsSuccessStatus: 200
@@ -15,8 +16,9 @@ app.use(cors({
 app.use(helmet());
 
 app.use(morgan('dev'));
+//#endregion
 
-/* mongodb connection */
+//#region mongodb connection
 (async () => {
     try {
         await mongoose.connect(config.mongodbUri);
@@ -26,13 +28,17 @@ app.use(morgan('dev'));
         process.exit(1);
     }
 })();
+//#endregion
 
-/* routes */
+//#region Routes
 
 /* Welcome Api */ 
 const welcomeRoute = require('./routes/index.route');
 app.use('/', welcomeRoute);
 
+//#endregion
+
+//#region handlers
 /* handle APIs not found */
 app.use((req, res) => {
     res.status(404).json({
@@ -44,7 +50,7 @@ app.use((req, res) => {
 
 /* Global Error handler */
 app.use(errorHandler);
-
+//#endregion
 
 app.listen(config.port, (() => {
     console.log(`Server is running successfully at port ${config.port}`);
