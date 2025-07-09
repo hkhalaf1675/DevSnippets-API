@@ -16,6 +16,8 @@ app.use(cors({
 app.use(helmet());
 
 app.use(morgan('dev'));
+
+app.use(express.json());
 //#endregion
 
 //#region mongodb connection
@@ -31,6 +33,13 @@ app.use(morgan('dev'));
 //#endregion
 
 //#region Routes
+/* Auth Apis */
+const authRoutes = require('./routes/auth.routes');
+app.use('/auth', authRoutes);
+
+/* User Routes */
+const userRoutes = require('./routes/user.routes');
+app.use('/users', userRoutes);
 
 /* Welcome Api */ 
 const welcomeRoute = require('./routes/index.route');
