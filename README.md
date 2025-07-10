@@ -8,14 +8,10 @@ A RESTful API for managing and sharing code snippets with authentication and aut
 - [Features](#features)
 - [Technologies](#technologies)
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [API Documentation](#api-documentation)
-- [Authentication](#authentication)
 - [Environment Variables](#environment-variables)
-- [Running Tests](#running-tests)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+- [Running the Project](running-the-project)
+- [API Endpoints Overview](#API-endpoints-overview)
+- [Authentication](#authentication)
 
 ## Features
 
@@ -72,6 +68,10 @@ To start the DevSnippets API locally, follow these steps:
 
 ```bash
 npm install
+```
+### 2. Run Project 
+```bash
+npm run start-dev
 ```
 
 ## 📚 API Endpoints Overview
